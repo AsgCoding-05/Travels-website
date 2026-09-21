@@ -6,6 +6,7 @@ const frontendDir = path.join(root, "frontend");
 const databaseDir = path.join(root, "database");
 const docsDir = path.join(root, "docs");
 const docsDataDir = path.join(docsDir, "data");
+const assetVersion = Date.now().toString(36);
 
 function copyFile(from, to) {
   fs.mkdirSync(path.dirname(to), { recursive: true });
@@ -21,9 +22,10 @@ copyFile(path.join(databaseDir, "site-content.json"), path.join(docsDataDir, "si
 
 const indexHtml = fs
   .readFileSync(path.join(frontendDir, "index.html"), "utf8")
+  .replace('href="styles.css"', `href="styles.css?v=${assetVersion}"`)
   .replace(
     '<script src="app.js"></script>',
-    '<script>window.SITE_CONTENT_URL = "data/site-content.json";</script>\n    <script src="app.js"></script>',
+    `<script>window.SITE_CONTENT_URL = "data/site-content.json";</script>\n    <script src="app.js?v=${assetVersion}"></script>`,
   );
 
 fs.writeFileSync(path.join(docsDir, "index.html"), indexHtml);
