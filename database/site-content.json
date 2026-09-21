@@ -12,9 +12,13 @@
   },
   "navigation": [
     { "label": "Services", "href": "#services" },
+    { "label": "Airport", "href": "#services" },
+    { "label": "Corporate", "href": "#experiences" },
     { "label": "Fleet", "href": "#fleet" },
     { "label": "Experiences", "href": "#experiences" },
+    { "label": "Weddings", "href": "#gallery" },
     { "label": "Gallery", "href": "#gallery" },
+    { "label": "Reviews", "href": "#faq" },
     { "label": "FAQ", "href": "#faq" },
     { "label": "Contact", "href": "#contact" }
   ],

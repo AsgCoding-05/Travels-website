@@ -92,6 +92,7 @@ async function handleApi(request, response, url) {
         id: `REQ-${Date.now()}`,
         createdAt: new Date().toISOString(),
         service: payload.service || "",
+        model: payload.model || "Any suitable vehicle",
         pickup: payload.pickup || "",
         date: payload.date || "",
       };
