@@ -14,9 +14,13 @@ const fallbackContent = {
   },
   navigation: [
     { label: "Services", href: "#services" },
+    { label: "Airport", href: "#services" },
+    { label: "Corporate", href: "#experiences" },
     { label: "Fleet", href: "#fleet" },
     { label: "Experiences", href: "#experiences" },
+    { label: "Weddings", href: "#gallery" },
     { label: "Gallery", href: "#gallery" },
+    { label: "Reviews", href: "#faq" },
     { label: "FAQ", href: "#faq" },
     { label: "Contact", href: "#contact" },
   ],
@@ -99,6 +103,10 @@ function renderPage(content) {
           <span></span><span></span><span></span>
         </button>
         <div class="nav-links" data-nav-links>${navLinks}</div>
+        <div class="nav-status" aria-label="Service status">
+          <span class="status-dot"></span>
+          <span>24/7 concierge</span>
+        </div>
         <a class="nav-cta" href="${whatsappUrl(content, bookingMessage)}" target="_blank" rel="noreferrer">Book Now</a>
       </nav>
     </header>
@@ -115,11 +123,33 @@ function renderPage(content) {
             <a class="button button-primary" href="#booking">Reserve a Car</a>
             <a class="button button-ghost" href="#fleet">View Fleet</a>
           </div>
+          <div class="hero-widgets" aria-label="Service widgets">
+            <div class="widget-card">
+              <span>Live availability</span>
+              <strong>18 premium cars</strong>
+              <small>7 ready now</small>
+            </div>
+            <div class="widget-card">
+              <span>Avg. response</span>
+              <strong>Under 4 mins</strong>
+              <small>WhatsApp concierge</small>
+            </div>
+            <div class="widget-card">
+              <span>Trusted by</span>
+              <strong>2,400+ clients</strong>
+              <small>Corporate & events</small>
+            </div>
+          </div>
+          <div class="hero-meta" aria-label="Luxury service highlights">
+            <span>Verified chauffeurs</span>
+            <span>Sanitized premium fleet</span>
+            <span>WhatsApp concierge</span>
+          </div>
           <div class="hero-tabs" role="tablist" aria-label="Featured services">
             ${content.hero.slides
               .map(
                 (slide, index) => `
-                  <button class="hero-tab${index === 0 ? " active" : ""}" type="button" data-slide="${index}">
+                  <button class="hero-tab${index === 0 ? " active" : ""}" type="button" data-slide="${index}" role="tab" aria-selected="${index === 0}">
                     ${escapeHtml(slide.tab)}
                     <span>${escapeHtml(slide.tabNote)}</span>
                   </button>
@@ -143,10 +173,27 @@ function renderPage(content) {
                 ${content.booking.serviceOptions.map((option) => `<option>${escapeHtml(option)}</option>`).join("")}
               </select>
             </label>
-            <label>Pickup <input name="pickup" type="text" placeholder="Location or airport" /></label>
-            <label>Date <input name="date" type="date" /></label>
+            <label>
+              Vehicle
+              <select name="model" aria-label="Vehicle model">
+                <option value="">Any suitable vehicle</option>
+                ${content.fleet.items.map((car) => `<option value="${escapeHtml(car.name)}">${escapeHtml(car.name)}</option>`).join("")}
+              </select>
+            </label>
+              <label>Pickup <input name="pickup" type="text" placeholder="Location or airport" required /></label>
+            <label>Date <input name="date" type="date" required /></label>
             <button class="button button-dark" type="submit">Request Quote</button>
           </form>
+          <p class="booking-status" data-booking-status role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="Service guarantees">
+        <div class="section-inner trust-grid">
+          <span>Airport meet-and-greet</span>
+          <span>Corporate billing ready</span>
+          <span>Wedding convoy planning</span>
+          <span>Outstation packages</span>
         </div>
       </section>
 
@@ -155,13 +202,14 @@ function renderPage(content) {
         <div class="card-grid services-grid">
           ${content.services.items
             .map(
-              (item) => `
+              (item, index) => `
                 <article class="service-card">
                   <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt)}" />
                   <div>
                     <span>${escapeHtml(item.label)}</span>
                     <h3>${escapeHtml(item.title)}</h3>
                     <p>${escapeHtml(item.copy)}</p>
+                    <small>0${index + 1}</small>
                   </div>
                 </article>
               `,
@@ -199,6 +247,7 @@ function renderPage(content) {
                     <h3>${escapeHtml(car.name)}</h3>
                     <span>${escapeHtml(car.details)}</span>
                     <strong>${escapeHtml(car.price)}</strong>
+                    <button class="fleet-reserve" type="button" data-model="${escapeHtml(car.name)}">Reserve this model</button>
                   </div>
                 </article>
               `,
@@ -259,6 +308,23 @@ function renderPage(content) {
       </section>
     </main>
 
+    <div class="booking-modal" data-booking-modal hidden>
+      <div class="booking-modal-backdrop" data-modal-close></div>
+      <section class="booking-dialog" role="dialog" aria-modal="true" aria-labelledby="booking-dialog-title">
+        <button class="modal-close" type="button" aria-label="Close reservation form" data-modal-close>&times;</button>
+        <p class="eyebrow dark">Private reservation</p>
+        <h2 id="booking-dialog-title">Reserve <span data-modal-model></span></h2>
+        <p class="modal-copy">Share the essentials and our concierge will confirm availability for your selected vehicle.</p>
+        <form class="modal-form" data-model-booking-form>
+          <input type="hidden" name="model" />
+          <label>Pickup location <input name="pickup" type="text" placeholder="Airport, hotel, or address" required /></label>
+          <label>Travel date <input name="date" type="date" required /></label>
+          <button class="button button-dark" type="submit">Request this model</button>
+          <p class="booking-status" data-modal-status role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </div>
+
     <footer class="site-footer">
       <div class="footer-grid">
         <div>
@@ -298,14 +364,105 @@ function bindInteractions(content) {
   const heroMedia = document.querySelector("[data-hero-media]");
   const heroTabs = document.querySelectorAll(".hero-tab");
   const bookingForm = document.querySelector("[data-booking-form]");
+  const bookingStatus = document.querySelector("[data-booking-status]");
+  const bookingModal = document.querySelector("[data-booking-modal]");
+  const modalModel = document.querySelector("[data-modal-model]");
+  const modalForm = document.querySelector("[data-model-booking-form]");
+  const modalStatus = document.querySelector("[data-modal-status]");
+  const modalModelField = modalForm.querySelector('[name="model"]');
+  const modalDateField = modalForm.querySelector('[name="date"]');
+
+  modalDateField.min = new Date().toISOString().split("T")[0];
 
   function setSlide(index) {
     const slide = content.hero.slides[index];
     heroTitle.textContent = slide.title;
     heroCopy.textContent = slide.copy;
     heroMedia.style.backgroundImage = `url("${slide.image}")`;
-    heroTabs.forEach((tab) => tab.classList.toggle("active", tab.dataset.slide === String(index)));
+    heroTabs.forEach((tab) => {
+      const isActive = tab.dataset.slide === String(index);
+      tab.classList.toggle("active", isActive);
+      tab.setAttribute("aria-selected", String(isActive));
+    });
   }
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (link.dataset.model) return;
+      const target = document.querySelector(link.getAttribute("href"));
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+      window.setTimeout(() => target.focus({ preventScroll: true }), 350);
+      navLinks.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  document.querySelectorAll("[data-model]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      modalModel.textContent = link.dataset.model;
+      modalModelField.value = link.dataset.model;
+      modalForm.reset();
+      modalModelField.value = link.dataset.model;
+      modalDateField.min = new Date().toISOString().split("T")[0];
+      modalStatus.textContent = "";
+      modalStatus.className = "booking-status";
+      bookingModal.hidden = false;
+      document.body.classList.add("modal-open");
+      modalForm.querySelector('[name="pickup"]').focus();
+    });
+  });
+
+  document.querySelectorAll("[data-modal-close]").forEach((control) => {
+    control.addEventListener("click", () => {
+      bookingModal.hidden = true;
+      document.body.classList.remove("modal-open");
+    });
+  });
+
+  modalForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    modalStatus.textContent = "Preparing your concierge request...";
+    modalStatus.className = "booking-status is-loading";
+    const formData = new FormData(modalForm);
+    const request = {
+      service: "Specific model reservation",
+      model: formData.get("model"),
+      pickup: formData.get("pickup"),
+      date: formData.get("date"),
+    };
+    const message = `Hello ${content.business.name}, I want to reserve ${request.model}.\nPickup: ${request.pickup}\nDate: ${request.date}`;
+    const whatsappWindow = window.open("about:blank", "_blank", "noopener,noreferrer");
+
+    try {
+      const response = await fetch("/api/booking-requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(request),
+      });
+      if (!response.ok) throw new Error(`Booking API returned ${response.status}`);
+      modalStatus.textContent = "Request received. Opening WhatsApp concierge...";
+      modalStatus.className = "booking-status is-success";
+    } catch (error) {
+      console.warn("Could not save model reservation locally.", error);
+      modalStatus.textContent = "Opening WhatsApp concierge. Your request can still be sent securely.";
+      modalStatus.className = "booking-status is-warning";
+    }
+
+    const whatsappTarget = whatsappUrl(content, message);
+    if (whatsappWindow) whatsappWindow.location.href = whatsappTarget;
+    else window.location.href = whatsappTarget;
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !bookingModal.hidden) {
+      bookingModal.hidden = true;
+      document.body.classList.remove("modal-open");
+    }
+  });
 
   navToggle.addEventListener("click", () => {
     const isOpen = navLinks.classList.toggle("open");
@@ -323,27 +480,43 @@ function bindInteractions(content) {
     tab.addEventListener("click", () => setSlide(Number(tab.dataset.slide)));
   });
 
+  setSlide(0);
+
   bookingForm.addEventListener("submit", async (event) => {
     event.preventDefault();
+    bookingStatus.textContent = "Preparing your concierge request...";
+    bookingStatus.className = "booking-status is-loading";
     const formData = new FormData(bookingForm);
     const request = {
       service: formData.get("service") || "Luxury car booking",
+      model: formData.get("model") || "Any suitable vehicle",
       pickup: formData.get("pickup") || "Pickup not specified",
       date: formData.get("date") || "Date not specified",
     };
+    const message = `Hello ${content.business.name}, I need a quote.\nVehicle: ${request.model}\nService: ${request.service}\nPickup: ${request.pickup}\nDate: ${request.date}`;
+    const whatsappWindow = window.open("about:blank", "_blank", "noopener,noreferrer");
 
     try {
-      await fetch("/api/booking-requests", {
+      const response = await fetch("/api/booking-requests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(request),
       });
+      if (!response.ok) throw new Error(`Booking API returned ${response.status}`);
+      bookingStatus.textContent = "Request received. Opening WhatsApp concierge...";
+      bookingStatus.className = "booking-status is-success";
     } catch (error) {
       console.warn("Could not save booking request locally.", error);
+      bookingStatus.textContent = "Opening WhatsApp concierge. Your request can still be sent securely.";
+      bookingStatus.className = "booking-status is-warning";
     }
 
-    const message = `Hello ${content.business.name}, I need a quote.\nService: ${request.service}\nPickup: ${request.pickup}\nDate: ${request.date}`;
-    window.open(whatsappUrl(content, message), "_blank", "noopener,noreferrer");
+    const whatsappTarget = whatsappUrl(content, message);
+    if (whatsappWindow) {
+      whatsappWindow.location.href = whatsappTarget;
+    } else {
+      window.location.href = whatsappTarget;
+    }
   });
 
   let activeSlide = 0;
