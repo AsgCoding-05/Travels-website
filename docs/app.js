@@ -519,11 +519,6 @@ function bindInteractions(content) {
     }
   });
 
-  let activeSlide = 0;
-  window.setInterval(() => {
-    activeSlide = (activeSlide + 1) % content.hero.slides.length;
-    setSlide(activeSlide);
-  }, 6500);
 }
 
 async function init() {
