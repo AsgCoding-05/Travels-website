@@ -1,0 +1,230 @@
+{
+  "business": {
+    "name": "Aurum Luxe Cars",
+    "shortName": "A",
+    "tagline": "Luxury chauffeur service",
+    "description": "Luxury airport transfers, corporate travel, weddings, outstation rides, and private hourly rentals.",
+    "phone": "+91 00000 00000",
+    "phoneHref": "+910000000000",
+    "email": "booking@aurumluxecars.com",
+    "location": "Bangalore, Karnataka",
+    "whatsappNumber": "910000000000"
+  },
+  "navigation": [
+    { "label": "Services", "href": "#services" },
+    { "label": "Fleet", "href": "#fleet" },
+    { "label": "Experiences", "href": "#experiences" },
+    { "label": "Gallery", "href": "#gallery" },
+    { "label": "FAQ", "href": "#faq" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "hero": {
+    "eyebrow": "Private luxury cars with professional chauffeurs",
+    "slides": [
+      {
+        "tab": "Airport",
+        "tabNote": "Meet-and-greet arrivals",
+        "title": "Arrive with quiet confidence.",
+        "copy": "Premium sedans, SUVs, and executive vans for airport transfers, business movement, weddings, and curated outstation journeys.",
+        "image": "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=2200&q=84"
+      },
+      {
+        "tab": "Corporate",
+        "tabNote": "Boardroom-ready mobility",
+        "title": "Executive travel, handled end to end.",
+        "copy": "Chauffeur-driven luxury cars for board meetings, hotel transfers, investor visits, and leadership itineraries.",
+        "image": "https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=2200&q=84"
+      },
+      {
+        "tab": "Celebrations",
+        "tabNote": "Weddings and VIP hosting",
+        "title": "Make every entrance feel cinematic.",
+        "copy": "Wedding cars, VIP guest movement, event convoys, and polished vehicles prepared for photographs and grand arrivals.",
+        "image": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2200&q=84"
+      }
+    ]
+  },
+  "booking": {
+    "eyebrow": "Instant concierge request",
+    "title": "Tell us the occasion. We will pair the car, chauffeur, and route.",
+    "serviceOptions": [
+      "Airport Transfer",
+      "Corporate Travel",
+      "Wedding Car",
+      "Hourly Rental",
+      "Outstation Trip"
+    ]
+  },
+  "services": {
+    "eyebrow": "Our Services",
+    "title": "Built around the same simple booking flow, elevated for luxury travel.",
+    "linkLabel": "Speak to concierge",
+    "items": [
+      {
+        "label": "24/7",
+        "title": "Airport Transfers",
+        "copy": "Flight tracking, curbside coordination, discreet luggage handling, and fixed-rate premium pickups.",
+        "image": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=82",
+        "alt": "Black luxury car side profile"
+      },
+      {
+        "label": "Executive",
+        "title": "Corporate Mobility",
+        "copy": "Monthly billing, uniformed chauffeurs, clean cabins, and on-time city movement for leadership teams.",
+        "image": "https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1000&q=82",
+        "alt": "Luxury car in a dramatic showroom"
+      },
+      {
+        "label": "Premium",
+        "title": "Wedding & Events",
+        "copy": "Statement arrivals, convoy planning, guest movement, and polished vehicles prepared for photography.",
+        "image": "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1000&q=82",
+        "alt": "Mercedes luxury car front grille"
+      }
+    ]
+  },
+  "experiences": {
+    "eyebrow": "Signature experiences",
+    "title": "From one-hour city hops to multi-day escapes, every ride feels composed.",
+    "copy": "Choose point-to-point, hourly, full-day, or outstation packages. Every booking includes a verified chauffeur, spotless interiors, route planning, bottled water, and responsive WhatsApp support.",
+    "background": "https://performancerent.cz/event-hero.jpg",
+    "stats": [
+      { "value": "15 min", "label": "Quote response" },
+      { "value": "4.9/5", "label": "Client rating" },
+      { "value": "24/7", "label": "Concierge desk" }
+    ],
+    "items": [
+      { "name": "Airport VIP Arrival", "price": "From ₹2,499" },
+      { "name": "Executive Hourly Rental", "price": "From ₹4,999" },
+      { "name": "Luxury Wedding Car", "price": "Custom" },
+      { "name": "Bangalore to Coorg Weekend", "price": "From ₹18,999" },
+      { "name": "Board Meeting Convoy", "price": "On request" },
+      { "name": "Premium SUV Outstation", "price": "From ₹32/km" }
+    ]
+  },
+  "fleet": {
+    "eyebrow": "Our Fleet",
+    "title": "Luxury cars selected for comfort, presence, and reliability.",
+    "linkLabel": "Check availability",
+    "items": [
+      {
+        "category": "Executive Sedan",
+        "name": "Mercedes-Benz E-Class",
+        "details": "3 passengers · Airport · Corporate",
+        "price": "From ₹38/km",
+        "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1000&q=84",
+        "alt": "Mercedes Benz luxury sedan"
+      },
+      {
+        "category": "Flagship Sedan",
+        "name": "BMW 7 Series",
+        "details": "3 passengers · VIP · Events",
+        "price": "From ₹65/km",
+        "featured": true,
+        "image": "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1000&q=84",
+        "alt": "Black luxury sedan front profile"
+      },
+      {
+        "category": "Luxury SUV",
+        "name": "Range Rover Vogue",
+        "details": "4 passengers · Weddings · Outstation",
+        "price": "On request",
+        "image": "https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&w=1000&q=84",
+        "alt": "Range Rover luxury SUV"
+      },
+      {
+        "category": "Premium Sedan",
+        "name": "Audi A6",
+        "details": "3 passengers · Hourly · Airport",
+        "price": "From ₹34/km",
+        "image": "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?auto=format&fit=crop&w=1000&q=84",
+        "alt": "Audi luxury car detail"
+      }
+    ]
+  },
+  "whyChooseUs": {
+    "eyebrow": "Why choose us",
+    "title": "Luxury is not loud. It is punctual, clean, calm, and handled.",
+    "items": [
+      {
+        "title": "Vetted chauffeurs",
+        "copy": "Experienced, background-verified, route-aware drivers trained for premium guest handling."
+      },
+      {
+        "title": "Immaculate cars",
+        "copy": "Detailed interiors, leather care, fragrance control, and pre-trip mechanical checks."
+      },
+      {
+        "title": "Transparent quotes",
+        "copy": "Clear inclusions for tolls, parking, driver allowance, extra hours, and night charges."
+      },
+      {
+        "title": "Live coordination",
+        "copy": "WhatsApp support before, during, and after the ride for changes and special requests."
+      }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "Travel Gallery",
+    "title": "Elegant cars, polished cabins, and arrivals that photograph beautifully.",
+    "linkLabel": "View fleet",
+    "images": [
+      {
+        "src": "https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=900&q=82",
+        "alt": "Luxury car in a dramatic showroom"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=82",
+        "alt": "Premium car front detail"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=82",
+        "alt": "Black luxury car side profile"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=900&q=82",
+        "alt": "Sports car parked outdoors"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=900&q=82",
+        "alt": "Luxury car interior steering wheel"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=900&q=82",
+        "alt": "Mercedes luxury car front grille"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Everything clients usually ask before booking.",
+    "items": [
+      {
+        "question": "How do I book a luxury car?",
+        "answer": "Send your pickup, destination, date, time, passenger count, luggage count, and preferred car. We confirm availability and share a transparent quote."
+      },
+      {
+        "question": "Are tolls, parking, and driver allowance included?",
+        "answer": "They can be included in a package quote or billed at actuals. We clarify every charge before confirmation."
+      },
+      {
+        "question": "Can I book for airport arrivals at night?",
+        "answer": "Yes. We handle 24/7 airport pickups with flight tracking and live chauffeur coordination."
+      },
+      {
+        "question": "Do you provide decorated wedding cars?",
+        "answer": "Yes. Floral decor, ribbons, convoy planning, and guest transport can be arranged with advance notice."
+      }
+    ]
+  },
+  "cta": {
+    "eyebrow": "Ready to book?",
+    "title": "Your next arrival should feel effortless.",
+    "copy": "Message us on WhatsApp for availability, pricing, and a tailored car recommendation.",
+    "image": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=82"
+  },
+  "footer": {
+    "copyright": "© 2026 Aurum Luxe Cars. All rights reserved.",
+    "legal": "Privacy Policy · Terms & Conditions"
+  }
+}

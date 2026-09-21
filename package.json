@@ -1,0 +1,20 @@
+{
+  "name": "luxury-car-rental-website",
+  "version": "1.0.0",
+  "description": "Editable luxury car rental website with separated frontend, backend, and database folders.",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js",
+    "build:github": "node scripts/build-github-pages.js"
+  },
+  "keywords": [
+    "luxury-cars",
+    "chauffeur",
+    "travel",
+    "static-site",
+    "node"
+  ],
+  "author": "",
+  "license": "MIT"
+}
